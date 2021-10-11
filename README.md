@@ -9,7 +9,7 @@ Orignial Demo artifacts and guide
 Please open the Guide in a new tab with the following link Here
 
 
-Github repos:
+Github repos for original demo:
 
 Event Decisions:
 https://github.com/jbossdemocentral/rhdm-realtime-event - decisioning-demo-personalization-repo
@@ -21,5 +21,11 @@ KStreams Event Processor(Fraud Pattern Check):
 https://github.com/jbossdemocentral/rhdm-realtime-event-decisioning-demo-alert-fraud-pattern
 Vertx Web App:
 https://github.com/jbossdemocentral/rhdm-realtime-event-decisioning-demo-event-analysis-webapp
+
+
+Source event emitter github code leveraged by original demo
+https://github.com/elmiko/event-stream-decisions
+
+
 
 
