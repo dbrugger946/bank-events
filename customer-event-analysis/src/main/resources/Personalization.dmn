@@ -1,0 +1,98 @@
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_746FB059-0238-4996-9009-28DB94C559AF" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_0168DF3D-9212-4B8C-8E48-2B1D4132F186" name="Personalization" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_746FB059-0238-4996-9009-28DB94C559AF">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_FA0373E9-CA68-449C-BC57-0E53788E6274" name="CustomerHistory" isCollection="false">
+    <dmn:itemComponent id="_10B16599-66DA-4AB7-9F76-4123FE457A41" name="CustomerAttribute" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_DB053192-DD50-4D0B-8184-6394D6B522B2">
+        <dmn:text>"CUSTOMER_GOOD_STANDING", "OFFER_UPGRADE", "HIGH_BALANCE_DEBT", "DISSATISFACTION_QUOTIENT", "DELINQUENCY_INDEX"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_59B20A17-88B0-4256-B904-22DE933B67A0" name="Event" isCollection="false">
+    <dmn:itemComponent id="_AA487200-6D48-491A-9CBA-9A3F7F89C188" name="EventCategory" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_614C13FF-113A-4B5F-834A-488EF2F6EA34">
+        <dmn:text>"CC_BALANCE_PAYMENT", "CC_TRANSACTION", "DISPUTES", "ONLINE_ACCOUNT"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_3C5B27DE-CA70-4DD6-A0EF-7E62D1FD5BB1" name="EventDate" isCollection="false">
+      <dmn:typeRef>date and time</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8571FFD2-784C-491A-BA00-5F75ED330530" name="EventID" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_397566AD-FB0B-4C21-AE6C-A017F3BFC5DC" name="EventSource" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_3494484A-2366-4571-8A4B-11198AFC3D12" name="EventValue" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_0AA8C942-4CB9-48D4-AB4D-DFBDC5C29F89">
+        <dmn:text>"LATE_PAYMENT", "AIRLINE_PURCHASE", "MIN_DUE", "CASE_CREATED", "PAYMENT_FAILURE"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_A8572E72-A1E5-4124-ABF8-23DA6C1B71DF" name="EventAnalysis" isCollection="false">
+    <dmn:itemComponent id="_7CAC6E3D-DBC5-43E3-9DDB-9D912AC998B1" name="EventEffectiveness" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_8EC3E2B8-0FB6-4BDF-857A-F42DC377BEF0">
+        <dmn:text>"ALERT", "OFFER", "REMINDER"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_B13C09EC-DF2F-4107-9FF0-9506A1CED5A9" name="EventResponsePayload" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_AE7145A6-2972-4521-AD04-06C178CD73BA" name="This Customer">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6F87699D-0D3D-448B-91FA-A23A3B5D4F6F" name="This Customer" typeRef="CustomerHistory"/>
+  </dmn:inputData>
+  <dmn:inputData id="_5A8D3E1C-5307-4C55-AFB6-53622763B499" name="This Event">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DD68E690-A7D0-4394-BB36-86DE6AA9FF0D" name="This Event" typeRef="Event"/>
+  </dmn:inputData>
+  <dmn:decision id="_CC874FF4-1A6B-4C7A-8A8B-3D4F94436A32" name="Customer History">
+    <dmn:extensionElements/>
+    <dmn:variable id="_A6FFABFB-377E-492D-A380-418E4C4B4F25" name="Customer History"/>
+    <dmn:informationRequirement id="_EB698F64-14AB-4598-A30F-FEADE4CF59A6">
+      <dmn:requiredInput href="#_AE7145A6-2972-4521-AD04-06C178CD73BA"/>
+    </dmn:informationRequirement>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_25BE4150-4C80-45C3-9F1A-08910E6D556B" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension/>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_AE7145A6-2972-4521-AD04-06C178CD73BA" dmnElementRef="_AE7145A6-2972-4521-AD04-06C178CD73BA" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="418" y="452" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_5A8D3E1C-5307-4C55-AFB6-53622763B499" dmnElementRef="_5A8D3E1C-5307-4C55-AFB6-53622763B499" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="107" y="452" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_CC874FF4-1A6B-4C7A-8A8B-3D4F94436A32" dmnElementRef="_CC874FF4-1A6B-4C7A-8A8B-3D4F94436A32" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="418" y="322" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_EB698F64-14AB-4598-A30F-FEADE4CF59A6-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_EB698F64-14AB-4598-A30F-FEADE4CF59A6">
+        <di:waypoint x="468" y="452"/>
+        <di:waypoint x="468" y="372"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
