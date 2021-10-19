@@ -8,6 +8,42 @@ import uuid
 
 from kafka import KafkaProducer
 
+
+CE_TEMPLATE = { 
+  "specversion": "1.0", 
+  "id": "a89b61a2-5644-487a-8a86-144855c5dce8", 
+  "source": "SomeEventSource", 
+  "type": "DecisionRequest", 
+  "subject": "TheSubject", 
+  "kogitodmnmodelname": "Personalization", 
+  "kogitodmnmodelnamespace": "https://kiegroup.org/dmn/_746FB059-0238-4996-9009-28DB94C559AF", 
+  "data": {
+    "Current Event": {
+      "CustomerName": "John",
+      "Category": "CC_TRANSACTION",
+      "EventDate": "2021-10-19T19:24:46.559Z",
+      "EventID": "",
+      "EventSource": "",
+      "Value": "AIRLINE_PURCHASE",
+      "ResponseType": "",
+      "ResponseMessage": ""
+    }
+  } 
+}
+
+t_dict = {"data": {
+    "Current Event": {
+      "CustomerName": "James",
+      "Category": "CC_BALANCE_PAYMENT",
+      "EventDate": "2021-10-19T19:24:46.559Z",
+      "EventID": "",
+      "EventSource": "",
+      "Value": "MIN_DUE",
+      "ResponseType": "",
+      "ResponseMessage": ""
+    }
+  } }
+
 EVENT_TEMPLATES = [
     { "eventCategory": "CC_BALANCE_PAYMENT", "eventValue": "LATE_PAYMENT", "eventSource": "CUSTOMERCARE"},
     { "eventCategory": "CC_BALANCE_PAYMENT", "eventValue": "MIN_DUE", "eventSource": "MOBLE"},
@@ -56,10 +92,14 @@ def main(args):
 
     logging.info('begin sending events')
     while True:
-        logging.info(json.dumps(generate_event()).encode())
-        producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
-        producer.send("atm-withdrawl", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
-        time.sleep(10.0)
+#        logging.info(json.dumps(generate_event()).encode())
+#        producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
+        CE_TEMPLATE["data"] = t_dict
+        logging.info(CE_TEMPLATE)
+#       producer.send(args.topic, json.dumps(CE_TEMPLATE).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
+
+#        producer.send("atm-withdrawl", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
+        time.sleep(args.rate)
     logging.info('end sending events')
 
 

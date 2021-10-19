@@ -44,7 +44,7 @@ chmod +x generated/pro-event-input-stream.sh
 cat <<EOF > generated/lis-offer-output-stream.sh
 	kafka-console-consumer.sh --bootstrap-server $route \\
    	--consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password \\
-	-topic lis-offer-output-stream --from-beginning \\
+	-topic offer-output-stream --from-beginning \\
 	--consumer-property ssl.truststore.location=truststore.jks
 EOF
 chmod +x generated/lis-offer-output-stream.sh
@@ -52,9 +52,28 @@ chmod +x generated/lis-offer-output-stream.sh
 cat <<EOF > generated/pro-offer-output-stream.sh
         kafka-console-producer.sh --bootstrap-server $route \\
         --producer-property security.protocol=SSL --producer-property ssl.truststore.password=password \\
-        -topic pro-offer-output-stream \\
+        -topic offer-output-stream \\
         --producer-property ssl.truststore.location=truststore.jks
 EOF
 
 chmod +x generated/pro-offer-output-stream.sh
+
+
+# create the client kafka scripts
+cat <<EOF > generated/lis-atm-withdrawl.sh
+	kafka-console-consumer.sh --bootstrap-server $route \\
+   	--consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password \\
+	-topic atm-withdrawl --from-beginning \\
+	--consumer-property ssl.truststore.location=truststore.jks
+EOF
+chmod +x generated/lis-atm-withdrawl.sh
+
+cat <<EOF > generated/pro-atm-withdrawl.sh
+        kafka-console-producer.sh --bootstrap-server $route \\
+        --producer-property security.protocol=SSL --producer-property ssl.truststore.password=password \\
+        -topic atm-withdrawl \\
+        --producer-property ssl.truststore.location=truststore.jks
+EOF
+
+chmod +x generated/pro-atm-withdrawl.sh
 exit 0
