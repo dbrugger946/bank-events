@@ -15,13 +15,9 @@
  */
 package org.kie.kogito.app;
 
-import javax.enterprise.inject.Instance;
+import javax.ws.rs.Path;
+import org.kie.kogito.addon.cloudevents.quarkus.http.AbstractQuarkusCloudEventResource;
 
-@javax.inject.Singleton
-public class ApplicationConfig extends org.kie.kogito.StaticConfig {
-
-    @javax.inject.Inject
-    public ApplicationConfig(Instance<org.kie.kogito.KogitoConfig> configs) {
-        super(new org.kie.kogito.Addons(java.util.Arrays.asList("kogito-event-driven-decisions", "cloudevents", "cloudevents")), configs);
-    }
+@Path("/")
+public class CloudEventListenerResource extends AbstractQuarkusCloudEventResource {
 }

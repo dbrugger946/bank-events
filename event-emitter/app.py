@@ -43,20 +43,23 @@ t_dict = {"data": {
       "ResponseMessage": ""
     }
   } }
+# CE_TEMPLATE["data"] = t_dict
+
 
 EVENT_TEMPLATES = [
-    { "eventCategory": "CC_BALANCE_PAYMENT", "eventValue": "LATE_PAYMENT", "eventSource": "CUSTOMERCARE"},
-    { "eventCategory": "CC_BALANCE_PAYMENT", "eventValue": "MIN_DUE", "eventSource": "MOBLE"},
-    { "eventCategory": "CC_BALANCE_PAYMENT", "eventValue": "MIN_DUE", "eventSource": "WEBSITE"},
-    { "eventCategory": "CC_TRANSACTION", "eventValue": "AIRLINE_PURCHASE", "eventSource": "WEBSITE"},
-    { "eventCategory": "CC_TRANSACTION", "eventValue": "MERCHANT_PURCHASE", "eventSource": "POS"},
-    { "eventCategory": "CC_TRANSACTION", "eventValue": "HOTEL_PURCHASE", "eventSource": "POS"},
-    { "eventCategory": "CC_TRANSACTION", "eventValue": "ONLINE_PURCHASE", "eventSource": "WEBSITE"},
-    { "eventCategory": "DISPUTES", "eventValue": "CASE_CREATED", "eventSource": "IVR"},
-    { "eventCategory": "DISPUTES", "eventValue": "CASE_CLOSED", "eventSource": "IVR"},
-    { "eventCategory": "ONLINE_ACCOUNT", "eventValue": "PAYMENT_FAILURE", "eventSource": "CUSTOMERCARE"},
-    { "eventCategory": "ONLINE_ACCOUNT", "eventValue": "PAYMENT_SUCCESS", "eventSource": "CUSTOMERCARE"}
+     { "Current Event": { "CustomerName": "James", "Category": "CC_BALANCE_PAYMENT", "EventDate": "","EventID": "","EventSource": "CUSTOMERCARE", "Value": "LATE_PAYMENT" ,"ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_BALANCE_PAYMENT", "EventDate": "","EventID": "","EventSource": "MOBLE", "Value": "MIN_DUE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_BALANCE_PAYMENT", "EventDate": "","EventID": "","EventSource": "WEBSITE", "Value": "MIN_DUE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_TRANSACTION", "EventDate": "","EventID": "","EventSource": "WEBSITE", "Value": "AIRLINE_PURCHASE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_TRANSACTION", "EventDate": "","EventID": "","EventSource": "POS", "Value": "MERCHANT_PURCHASE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_TRANSACTION", "EventDate": "","EventID": "","EventSource": "POS", "Value": "HOTEL_PURCHASE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "CC_TRANSACTION", "EventDate": "","EventID": "","EventSource": "WEBSITE", "Value": "ONLINE_PURCHASE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "DISPUTES", "EventDate": "","EventID": "","EventSource": "IVR", "Value": "CASE_CREATED","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "DISPUTES", "EventDate": "","EventID": "","EventSource": "IVR", "Value": "CASE_CLOSED","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "ONLINE_ACCOUNT", "EventDate": "","EventID": "","EventSource": "CUSTOMERCARE", "Value": "PAYMENT_FAILURE","ResponseType": "", "ResponseMessage": ""}},
+     { "Current Event": { "CustomerName": "James", "Category": "ONLINE_ACCOUNT", "EventDate": "","EventID": "","EventSource": "CUSTOMERCARE", "Value": "PAYMENT_SUCCESS","ResponseType": "", "ResponseMessage": ""}}
 ]
+
 
 
 ATM_EVENT = [
@@ -73,7 +76,11 @@ CUSTOMER = [
 ]
 
 def generate_event():
-    ret = EVENT_TEMPLATES[random.randint(0, 10)]
+    CE_TEMPLATE["data"] = EVENT_TEMPLATES[random.randint(0, 10)]
+
+    CE_TEMPLATE["data"]["Current Event"]["CustomerName"] = CUSTOMER[random.randint(0, 1)]
+
+    ret = CE_TEMPLATE
     return ret
 
 
@@ -92,12 +99,9 @@ def main(args):
 
     logging.info('begin sending events')
     while True:
-#        logging.info(json.dumps(generate_event()).encode())
-#        producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
-        CE_TEMPLATE["data"] = t_dict
-        logging.info(CE_TEMPLATE)
-#       producer.send(args.topic, json.dumps(CE_TEMPLATE).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
-
+        logging.info(json.dumps(generate_event()).encode())
+        producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
+        
 #        producer.send("atm-withdrawl", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
         time.sleep(args.rate)
     logging.info('end sending events')
