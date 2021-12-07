@@ -4,6 +4,30 @@ rebuild of https://github.com/jbossdemocentral/rhdm-realtime-event*
 This demo is a clone/rebuild/extension of the original awesome demo.
 
 
+Install/Build/Deployment to OCP
+
+
+Kafka topics:  
+event-input-stream
+offer-output-stream
+atm-withdrawal
+atm-response
+
+
+Included Services (within this repo):
+
+event-emitter : Python app that generates events semi-randomly, and pushes into Kafak topics: event-input-stream, atm-withdrawl
+                Look at it's README.md file for tips on running in OCP
+
+customer-event-analysis :  Quarkus/Kogito service with a DMN business rules model that reads in event-input-stream topic and
+                            outputs offer-output-stream.  
+                            Look at it's README.md file for tips on running in OCP
+
+fraud-alert-sb-kstreams :  Spring / Kafka Streams service: original CEP module from original demo, looks across a window of atm-withdrawl topic events,
+                            determines if potential ATM fraud (stolen card/pin) sends out atm-response messages indicating possible fraud
+                            Look at it's README.md file for tips on running in OCP
+
+
 Orignial Demo artifacts and guide
 
 Please open the Guide in a new tab with the following link Here

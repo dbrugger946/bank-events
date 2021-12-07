@@ -4,8 +4,8 @@ A Python source-to-image application for emitting to an Apache Kafka topic
 ## Launching on OpenShift
 
 ```
-oc new-app centos/python-36-centos7~https://github.com/dbrugger946/bank-events \
-  --context-dir event-emitter \
+oc new-app python:3.9~https://github.com/dbrugger946/bank-events \
+  --context-dir=event-emitter \
   -e KAFKA_BROKERS=my-cluster-kafka-bootstrap:9092 \
   -e KAFKA_TOPIC=event-input-stream \
   -e RATE=1 \
