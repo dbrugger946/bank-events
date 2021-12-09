@@ -13,6 +13,12 @@ offer-output-stream
 atm-withdrawal
 atm-response
 
+oc get kt  //show kafka topics
+
+script to build console consumer/producers to work with topics directly located at
+bank-events/customer-event-analysis/src/main/resources/scripts
+use build.sh   -- ensure parms/setting met -- outputted scripts under generated sub dir
+
 
 Included Services (within this repo):
 

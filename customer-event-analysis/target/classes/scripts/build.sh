@@ -4,7 +4,7 @@ echo "Ensure you are logged into correct OCP cluster via the CLI 'oc' "
 echo "May need to adjust scripts for different kafka cluster naming "
 
 # grab the route
-route=$(oc get routes my-cluster-kafka-bootstrap -o=jsonpath='{.status.ingress[0].host}')
+route=$(oc get routes my-cluster-kafka-external-bootstrap -o=jsonpath='{.status.ingress[0].host}')
 route=${route}:443
 echo $route
 
@@ -21,6 +21,8 @@ fi
 
 # push the the cert into a Java keystore
 keytool -import -trustcacerts -alias root -file generated/ca.crt -keystore $keyfile -storepass password -noprompt
+
+echo "keystore replaced"
 
 # create the client kafka scripts
 cat <<EOF > generated/lis-event-input-stream.sh
@@ -58,6 +60,7 @@ EOF
 
 chmod +x generated/pro-offer-output-stream.sh
 
+echo "offer topic kafka utils built"
 
 # create the client kafka scripts
 cat <<EOF > generated/lis-atm-withdrawl.sh
@@ -76,4 +79,26 @@ cat <<EOF > generated/pro-atm-withdrawl.sh
 EOF
 
 chmod +x generated/pro-atm-withdrawl.sh
+
+echo "atm withdrawl topic kafka utils built"
+
+cat <<EOF > generated/lis-atm-response.sh
+	kafka-console-consumer.sh --bootstrap-server $route \\
+   	--consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password \\
+	-topic atm-response --from-beginning \\
+	--consumer-property ssl.truststore.location=truststore.jks
+EOF
+chmod +x generated/lis-atm-response.sh
+
+cat <<EOF > generated/pro-atm-response.sh
+        kafka-console-producer.sh --bootstrap-server $route \\
+        --producer-property security.protocol=SSL --producer-property ssl.truststore.password=password \\
+        -topic atm-response \\
+        --producer-property ssl.truststore.location=truststore.jks
+EOF
+
+chmod +x generated/pro-atm-response.sh
+
+echo "end build script for kafka clients"
+
 exit 0
