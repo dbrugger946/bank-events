@@ -2,6 +2,7 @@
 echo "Script to generate keystore and kafka client script "
 echo "Ensure you are logged into correct OCP cluster via the CLI 'oc' "
 echo "May need to adjust scripts for different kafka cluster naming "
+echo "Check Route and Secret Naming in OCP"
 
 # grab the route
 route=$(oc get routes my-cluster-kafka-external-bootstrap -o=jsonpath='{.status.ingress[0].host}')
@@ -9,7 +10,7 @@ route=${route}:443
 echo $route
 
 # pull the TLS cert from the broker
- oc extract secret/my-cluster-cluster-ca-cert --keys=ca.crt --to=- > generated/ca.crt
+oc extract secret/my-cluster-cluster-ca-cert --keys=ca.crt --to=- > generated/ca.crt
 
 keyfile='generated/truststore.jks'
 

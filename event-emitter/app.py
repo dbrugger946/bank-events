@@ -130,7 +130,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--brokers',
         help='The bootstrap servers, env variable KAFKA_BROKERS',
-        default='localhost:9092')
+        default='my-cluster-kafka-bootstrap:9092')
     parser.add_argument(
         '--topic',
         help='Topic to publish to, env variable KAFKA_TOPIC',
