@@ -1,5 +1,11 @@
 # customer-event-analysis Project
 
+
+mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true
+
+quarkus deployment guide
+https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/2.2/guide/9f629efb-0765-445e-9c2f-6ff721bd86bd
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .

@@ -99,8 +99,8 @@ def main(args):
 
     logging.info('begin sending events')
     while True:
- #       logging.info(json.dumps(generate_event()).encode())
- #       producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
+        logging.info(json.dumps(generate_event()).encode())
+        producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
         
         producer.send("atm-withdrawl", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
         logging.info(json.dumps(generate_event_atm()).encode())
