@@ -1,3 +1,0 @@
-curl -vvv -X POST     -H "content-type: application/json"     -H "ce-specversion: 1.0"     -H "ce-id: a89b61a2-5644-487a-8a86-144855c5dce8"     -H "ce-source: /from/localhost"     -H "ce-type: DecisionRequest"     -H "ce-subject: 123abcdefg"     -H "ce-kogitodmnmodelname: Traffic Violation"     -H "ce-kogitodmnmodelnamespace: https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF"     -d '{"Driver": { "Age": 35, "Points": 3 }, "Violation": { "Type": "speed", "Actual Speed": 115, "Speed Limit": 100 }}'     http://dmn-knative-quickstart-quarkus-runner-demo.apps.cluster-7858.7858.sandbox48.opentlc.com
-
-
