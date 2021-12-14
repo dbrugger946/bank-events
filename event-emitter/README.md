@@ -3,9 +3,14 @@ A Python source-to-image application for emitting to an Apache Kafka topic
 
 ## Launching on OpenShift
 
+oc get all --selector app=emitter -o name
+oc delete all --selector app=emitter
 
-oc new-app centos/python-38-centos7~https://github.com/dbrugger946/bank-events \
-  --context-dir=event-emitter
+
+
+oc new-app centos/python-36-centos7~https://github.com/dbrugger946/bank-events \
+  --context-dir=event-emitter \
+  --name=emitter
 
 
 oc new-app centos/python-36-centos7~https://github.com/dbrugger946/bank-events \
