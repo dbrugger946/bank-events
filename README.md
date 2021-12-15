@@ -13,25 +13,36 @@ offer-output-stream
 atm-withdrawal
 atm-response
 
-oc get kt  //show kafka topics
 
-script to build console consumer/producers to work with topics directly located at
-bank-events/customer-event-analysis/src/main/resources/scripts
-use build.sh   -- ensure parms/setting met -- outputted scripts under generated sub dir
 
 
 Included Services (within this repo):
 
-event-emitter : Python app that generates events semi-randomly, and pushes into Kafak topics: event-input-stream, atm-withdrawl
-                Look at it's README.md file for tips on running in OCP
+event-emitter :             Python app that generates events semi-randomly, and pushes into Kafak topics: event-input-stream, atm-withdrawl
+                            Look at its README.md file for tips on running in OCP
 
-customer-event-analysis :  Quarkus/Kogito service with a DMN business rules model that reads in event-input-stream topic and
+customer-event-analysis :   Quarkus/Kogito service with a DMN business rules model that reads in event-input-stream topic and
                             outputs offer-output-stream.  
                             Look at it's README.md file for tips on running in OCP
+
+                            script to build console consumer/producers to work with topics directly
+                            to check and test functionality located at
+                            bank-events/customer-event-analysis/src/main/resources/scripts
+                            use build.sh   -- ensure parms/setting met -- outputted scripts under generated sub dir
+
 
 fraud-alert-sb-kstreams :  Spring / Kafka Streams service: original CEP module from original demo, looks across a window of atm-withdrawl topic events,
                             determines if potential ATM fraud (stolen card/pin) sends out atm-response messages indicating possible fraud
                             Look at it's README.md file for tips on running in OCP
+
+
+scripts :                   Future location for all Kafka scripts and other utilities,
+                            slowly moving material from customer-event-analysis project (see above)
+
+                            oc apply -f your-file
+                            oc get kt  //show kafka topics
+                            oc delete kt <topic>
+
 
 
 Orignial Demo artifacts and guide
