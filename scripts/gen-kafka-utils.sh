@@ -5,7 +5,7 @@ echo "May need to adjust scripts for different kafka cluster naming "
 echo "Check Route and Secret Naming in OCP"
 
 # grab the route
-route=$(oc get routes my-cluster-kafka-external-bootstrap -o=jsonpath='{.status.ingress[0].host}')
+route=$(oc get routes my-cluster-kafka-bootstrap -o=jsonpath='{.status.ingress[0].host}')
 route=${route}:443
 echo $route
 

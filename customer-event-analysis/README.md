@@ -1,6 +1,6 @@
 # customer-event-analysis Project
 
-
+# creates a native compiled container image and pushes it to OCP
 mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true
 
 quarkus deployment guide

@@ -1,0 +1,48 @@
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+	modified:   customer-event-analysis/README.md
+	modified:   customer-event-analysis/pom.xml
+	modified:   customer-event-analysis/src/main/resources/application.properties
+	deleted:    customer-event-analysis/src/main/resources/scripts/data
+	deleted:    customer-event-analysis/src/main/resources/scripts/event-input-data
+	modified:   customer-event-analysis/target/classes/application.properties
+	modified:   customer-event-analysis/target/classes/com/demo/GreetingResource.class
+	deleted:    customer-event-analysis/target/classes/scripts/data
+	deleted:    customer-event-analysis/target/classes/scripts/event-input-data
+	modified:   customer-event-analysis/target/test-classes/com/demo/GreetingResourceTest.class
+	modified:   customer-event-analysis/target/test-classes/com/demo/NativeGreetingResourceIT.class
+	modified:   event-emitter/requirements.txt
+	modified:   scripts/gen-kafka-utils.sh
+	modified:   scripts/generated/ca.crt
+	modified:   scripts/generated/lis-atm-response.sh
+	modified:   scripts/generated/lis-atm-withdrawl.sh
+	modified:   scripts/generated/lis-event-input-stream.sh
+	modified:   scripts/generated/lis-offer-output-stream.sh
+	modified:   scripts/generated/pro-atm-response.sh
+	modified:   scripts/generated/pro-atm-withdrawl.sh
+	modified:   scripts/generated/pro-event-input-stream.sh
+	modified:   scripts/generated/pro-offer-output-stream.sh
+	modified:   scripts/generated/truststore.jks
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	customer-event-analysis/target/classes/META-INF/resources/dmnDefinitions.json
+	customer-event-analysis/target/classes/https_58_47_47kiegroup_46org_47dmn_47__746FB059_450238_454996_459009_4528DB94C559AF/
+	customer-event-analysis/target/classes/org/
+	customer-event-analysis/target/customer-event-analysis-1.0.0-SNAPSHOT-native-image-source-jar/
+	customer-event-analysis/target/customer-event-analysis-1.0.0-SNAPSHOT-runner
+	customer-event-analysis/target/customer-event-analysis-1.0.0-SNAPSHOT.jar
+	customer-event-analysis/target/generated-sources/
+	customer-event-analysis/target/kubernetes/
+	customer-event-analysis/target/maven-archiver/
+	customer-event-analysis/target/maven-status/
+	customer-event-analysis/target/quarkus-app/
+	customer-event-analysis/target/quarkus-artifact.properties
+	git-adds
+
+no changes added to commit (use "git add" and/or "git commit -a")
