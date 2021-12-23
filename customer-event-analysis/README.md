@@ -3,6 +3,8 @@
 # creates a native compiled container image and pushes it to OCP
 mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true
 
+oc delete all --selector app.kubernetes.io/name=customer-event-analysis
+
 quarkus deployment guide
 https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/2.2/guide/9f629efb-0765-445e-9c2f-6ff721bd86bd
 
