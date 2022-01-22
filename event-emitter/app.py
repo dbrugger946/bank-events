@@ -102,7 +102,7 @@ def main(args):
         logging.info(json.dumps(generate_event()).encode())
         producer.send(args.topic, json.dumps(generate_event()).encode(), json.dumps(CUSTOMER[random.randint(0, 1)]).encode())
         
-        producer.send("atm-withdrawl", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
+        producer.send("atm-withdrawal", json.dumps(generate_event_atm()).encode(), json.dumps(CUSTOMER[0]).encode())
         logging.info(json.dumps(generate_event_atm()).encode())
         
         time.sleep(args.rate)
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         '--rate',
         type=int,
         help='Lines per second, env variable RATE',
-        default=1)
+        default=5)
     args = parse_args(parser)
     main(args)
     logging.info('exiting')

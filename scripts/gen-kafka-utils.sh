@@ -64,24 +64,24 @@ chmod +x generated/pro-offer-output-stream.sh
 echo "offer topic kafka utils built"
 
 # create the client kafka scripts
-cat <<EOF > generated/lis-atm-withdrawl.sh
+cat <<EOF > generated/lis-atm-withdrawal.sh
 	kafka-console-consumer.sh --bootstrap-server $route \\
    	--consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password \\
-	-topic atm-withdrawl --from-beginning \\
+	-topic atm-withdrawal --from-beginning \\
 	--consumer-property ssl.truststore.location=truststore.jks
 EOF
-chmod +x generated/lis-atm-withdrawl.sh
+chmod +x generated/lis-atm-withdrawal.sh
 
-cat <<EOF > generated/pro-atm-withdrawl.sh
+cat <<EOF > generated/pro-atm-withdrawal.sh
         kafka-console-producer.sh --bootstrap-server $route \\
         --producer-property security.protocol=SSL --producer-property ssl.truststore.password=password \\
-        -topic atm-withdrawl \\
+        -topic atm-withdrawal \\
         --producer-property ssl.truststore.location=truststore.jks
 EOF
 
-chmod +x generated/pro-atm-withdrawl.sh
+chmod +x generated/pro-atm-withdrawal.sh
 
-echo "atm withdrawl topic kafka utils built"
+echo "atm withdrawal topic kafka utils built"
 
 cat <<EOF > generated/lis-atm-response.sh
 	kafka-console-consumer.sh --bootstrap-server $route \\

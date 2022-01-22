@@ -1,11 +1,15 @@
 
 
+# Maximum Java heap to be used during the native image generation
+quarkus.native.native-image-xmx=4g
 
 
 quarkus.kubernetes-client.trust-certs=true
 
 quarkus.openshift.build-strategy=docker
 quarkus.native.container-build=true
+quarkus.native.container-runtime=podman
+
 
 # quarkus.s2i.base-jvm-image=registry.access.redhat.com/openjdk/openjdk-11-rhel7
 
