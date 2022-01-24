@@ -8,17 +8,17 @@ oc delete all --selector app=emitter
 
 
 
-oc new-app python:3.9-ubi8~https://github.com/dbrugger946/bank-events \\
-  --context-dir=event-emitter \\
-  --name=emitter
+oc new-app python:3.9-ubi8~https://github.com/dbrugger946/bank-events \\  
+  --context-dir=event-emitter \\  
+  --name=emitter  
 
 // orig version new-app showing some additioanl settings
-oc new-app centos/python-36-centos7~https://github.com/dbrugger946/bank-events \\
-  --context-dir=event-emitter \\
-  -e KAFKA_BROKERS=my-cluster-kafka-bootstrap:9092 \\
-  -e KAFKA_TOPIC=event-input-stream \\
-  -e RATE=1 \\
-  --name=emitter
+oc new-app centos/python-36-centos7~https://github.com/dbrugger946/bank-events \\  
+  --context-dir=event-emitter \\  
+  -e KAFKA_BROKERS=my-cluster-kafka-bootstrap:9092 \\  
+  -e KAFKA_TOPIC=event-input-stream \\  
+  -e RATE=1 \\  
+  --name=emitter  
 ```
 
 You will need to adjust the `KAFKA_BROKERS` and `KAFKA_TOPICS` variables to
