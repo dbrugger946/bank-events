@@ -1,7 +1,9 @@
 # customer-event-analysis Project
 
 # creates a native compiled container image and pushes it to OCP
-mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true
+mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true  
+
+mvn clean package -Dquarkus.kubernetes.deploy=true  
 
 oc delete all --selector app.kubernetes.io/name=customer-event-analysis
 

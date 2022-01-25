@@ -1,22 +1,19 @@
 # bank-events
-rebuild of https://github.com/jbossdemocentral/rhdm-realtime-event*
-
-This demo is a clone/rebuild/extension of the original awesome demo.
+### this is a rebuild of https://github.com/jbossdemocentral/rhdm-realtime-event*
 
 
 Install/Build/Deployment to OCP
 
 
 Kafka topics:  
-event-input-stream
-offer-output-stream
-atm-withdrawal
-atm-response
+event-input-stream  
+offer-output-stream  
+atm-withdrawal  
+atm-response  
 
 
 
-
-Included Services (within this repo):
+## Included Services (within this repo):
 
 event-emitter :             Python app that generates events semi-randomly, and pushes into Kafak topics: event-input-stream, atm-withdrawl
                             Look at its README.md file for tips on running in OCP
@@ -47,7 +44,7 @@ scripts :                   Location for all Kafka scripts and other utilities,
                             created kafka consumer/producer scripts under generated sub dir
 
 
-local dir:  /home/chaika/git_ws2/bank-events-new/bank-events
+### local dir:  /home/chaika/git_ws2/bank-events-new/bank-events
 
 git add --all -- ':!customer-event-analysis/target'
 -- add all files except the ones in the above target dir
