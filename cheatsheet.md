@@ -56,6 +56,6 @@ oc adm prune images
 
 *** OTHER  
 
-bootstrap.<prj>.svc:9092  
+bootstrap.\<prj\>.svc:9092  
 
 
