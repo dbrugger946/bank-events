@@ -46,7 +46,7 @@ scripts :                   Location for all Kafka scripts and other utilities,
 
 ### local dir:  /home/chaika/git_ws2/bank-events-new/bank-events
 
-git add --all -- ':!customer-event-analysis/target'
+git add --all -- ':!customer-event-analysis/target' ':!fraud-alert-sb-kstreams/target/'
 -- add all files except the ones in the above target dir
 
 ### Orignial Demo artifacts and guide

@@ -1,7 +1,7 @@
-** Shortcuts and CLI reminders  
+## Shortcuts and CLI reminders  
 
 
-*** Knative CLI  
+### Knative CLI  
 https://access.redhat.com/documentation/en-us/openshift_container_platform/4.6/html-single/serverless/index#creating-serverless-apps-kn_serverless-applications  
 
 kn service create event-display \\  
@@ -28,7 +28,7 @@ kn service delete svc2 -n ns1
 
 
 
-*** Podman/Quay/Skopeo  
+### Podman/Quay/Skopeo  
 
 podman login quay.io  
 
@@ -48,13 +48,13 @@ oc create secret docker-registry registrycreds \\
 
 oc secrets link default registrycreds --for pull  
 
-*** OC  
+### OC  
 
 oc adm prune images  
 
 
 
-*** OTHER  
+### OTHER  
 
 bootstrap.\<prj\>.svc:9092  
 
