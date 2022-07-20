@@ -121,6 +121,26 @@
       <dmn:output id="_8FCFD4E3-20C6-4689-9B84-6ACA0A8AE2D8" name="ResponseType" typeRef="string"/>
       <dmn:output id="_3B9873AC-FA89-4839-9270-1DEEA7F413BA" name="ResponseMessage" typeRef="string"/>
       <dmn:annotation name="Rule Description"/>
+      <dmn:rule id="_B3984B8A-D277-4467-8457-891E7717EE29">
+        <dmn:inputEntry id="_AB7CCB59-3094-4E63-807A-57B349C94693">
+          <dmn:text>"CC_BALANCE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4C0A59D5-2AEC-49A9-89CC-C69995E5430B">
+          <dmn:text>"LATE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_64C8DB40-18F0-4DEA-A869-1C0822C6204C">
+          <dmn:text>"CUSTOMER_GOOD_STANDING"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_BF4BC71A-416E-437C-9A9E-29331864BA99">
+          <dmn:text>"ALERT"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_60344FA4-94F5-4967-899A-0C168A78C17D">
+          <dmn:text>"You have been a valued customer, and the late payment fee has been waived"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Late Payment Fees Waiver</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
       <dmn:rule id="_FFAE60D5-14E8-45D8-9268-39F6B4A59534">
         <dmn:inputEntry id="_71338EE5-0265-407C-A9C7-384F5DB0F973">
           <dmn:text>"CC_BALANCE_PAYMENT"</dmn:text>
@@ -129,7 +149,7 @@
           <dmn:text>"LATE_PAYMENT"</dmn:text>
         </dmn:inputEntry>
         <dmn:inputEntry id="_57218FA3-62F8-4D30-8167-3C3F4BDDE334">
-          <dmn:text>"CUSTOMER_GOOD_STANDING"</dmn:text>
+          <dmn:text>"OFFER_UPGRADE"</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_E9A50ACF-606A-4F95-8CD4-ECD98E00185B">
           <dmn:text>"ALERT"</dmn:text>

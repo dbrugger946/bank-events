@@ -3,7 +3,7 @@
 # creates a native compiled container image and pushes it to OCP
 mvn clean package -Pnative -DskipTests -Dquarkus.kubernetes.deploy=true  
 
-mvn clean package -Dquarkus.kubernetes.deploy=true  
+mvn clean package -DskipTests -Dquarkus.kubernetes.deploy=true  
 
 oc delete all --selector app.kubernetes.io/name=customer-event-analysis
 
@@ -68,3 +68,15 @@ If you want to learn more about building native executables, please consult http
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+
+## To run as Kafka enabled you need to add the following to POM and you need to use other application.properties examples files in resources folder
+
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-event-driven-decisions-quarkus-addon</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+    </dependency>
