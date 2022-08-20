@@ -2,7 +2,7 @@
 ### this is a rebuild of https://github.com/jbossdemocentral/rhdm-realtime-event*
 
 
-Install/Build/Deployment to OCP
+## Install/Build/Deployment to OCP cluster
 
 
 Kafka topics:  

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_746FB059-0238-4996-9009-28DB94C559AF" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_0168DF3D-9212-4B8C-8E48-2B1D4132F186" name="Personalization" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_746FB059-0238-4996-9009-28DB94C559AF">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_FA0373E9-CA68-449C-BC57-0E53788E6274" name="CustomerHistory" isCollection="false">
+    <dmn:itemComponent id="_10B16599-66DA-4AB7-9F76-4123FE457A41" name="CurrentStatus" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_DB053192-DD50-4D0B-8184-6394D6B522B2">
+        <dmn:text>"CUSTOMER_GOOD_STANDING", "OFFER_UPGRADE", "HIGH_BALANCE_DEBT", "DISSATISFACTION_QUOTIENT", "DELINQUENCY_INDEX"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_75D81111-9E78-41FF-8B7D-87E07F786413" name="CustomerYears" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_59B20A17-88B0-4256-B904-22DE933B67A0" name="Event" isCollection="false">
+    <dmn:itemComponent id="_7CF43571-B4A1-46E8-AA33-269B1DFD25FB" name="CustomerName" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_AA487200-6D48-491A-9CBA-9A3F7F89C188" name="Category" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_614C13FF-113A-4B5F-834A-488EF2F6EA34">
+        <dmn:text>"CC_BALANCE_PAYMENT", "CC_TRANSACTION", "DISPUTES", "ONLINE_ACCOUNT"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_3C5B27DE-CA70-4DD6-A0EF-7E62D1FD5BB1" name="EventDate" isCollection="false">
+      <dmn:typeRef>date and time</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8571FFD2-784C-491A-BA00-5F75ED330530" name="EventID" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_397566AD-FB0B-4C21-AE6C-A017F3BFC5DC" name="EventSource" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C3ED63AE-8DC0-4412-843E-128311D89665" name="Value" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_B0F7A563-1AC8-4E6F-9D7D-C1E206FB6274" name="ResponseType" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_8D9993E4-DCEC-4938-911D-BBF264CBBD4D">
+        <dmn:text>"ALERT", "OFFER", "REMINDER"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_1CB8868E-55D1-423D-88EE-6D590717B4B2" name="ResponseMessage" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_5A8D3E1C-5307-4C55-AFB6-53622763B499" name="Current Event">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DD68E690-A7D0-4394-BB36-86DE6AA9FF0D" name="Current Event" typeRef="Event"/>
+  </dmn:inputData>
+  <dmn:decision id="_8661D849-2BAB-4E73-80FA-C24872CE3150" name="Customer History">
+    <dmn:extensionElements/>
+    <dmn:variable id="_D6F4832D-E0AB-40B0-8E72-70199EF57B87" name="Customer History" typeRef="CustomerHistory"/>
+    <dmn:informationRequirement id="_4C9F9686-FEC4-479D-9F04-3D8E69F6D17F">
+      <dmn:requiredInput href="#_5A8D3E1C-5307-4C55-AFB6-53622763B499"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_552103EB-E273-480B-8800-25DD5E15459D" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_41D80F80-54B2-47D3-B05A-DBA21EDED711">
+        <dmn:inputExpression id="_C37B22C6-D083-4667-B0DA-762ED4124E43" typeRef="string">
+          <dmn:text>Current Event.CustomerName</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_0D879F06-BD04-450E-9693-3156CC99BF91" name="CurrentStatus" typeRef="string"/>
+      <dmn:output id="_5EC9FD86-CF5A-4578-AAAC-3F6510BF6451" name="CustomerYears" typeRef="number"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_669D95F5-2461-4520-8468-67ABC8A3BC6E">
+        <dmn:inputEntry id="_2FE50A4B-5942-4D9F-9602-7903783607C0">
+          <dmn:text>"John"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_8CBB1A6A-904A-43AF-B335-D74980939689">
+          <dmn:text>"OFFER_UPGRADE"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_A075D1E2-04AB-4877-A564-07815E843ED6">
+          <dmn:text>5</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7CD8FC86-17EE-460B-8C8B-C10F3BCC4E64">
+        <dmn:inputEntry id="_8B3EEDC3-8871-4D7F-8744-FFCDC793CC78">
+          <dmn:text>"James"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_61478F74-5D6F-4394-9D16-31342009CB14">
+          <dmn:text>"HIGH_BALANCE_DEBT"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_538FFBEA-9F88-4643-8881-61CA773BD37D">
+          <dmn:text>7</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_B20DCF5F-5310-4254-A879-D2393B4EB05A" name="Next Best Action">
+    <dmn:extensionElements/>
+    <dmn:variable id="_266F3B74-560E-4915-B215-D49A653E1B89" name="Next Best Action" typeRef="Event"/>
+    <dmn:informationRequirement id="_15548D3F-1C57-4649-8A74-43D5A7167368">
+      <dmn:requiredDecision href="#_8661D849-2BAB-4E73-80FA-C24872CE3150"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_8076A38F-1848-4418-A1E2-449842C7AC9A">
+      <dmn:requiredInput href="#_5A8D3E1C-5307-4C55-AFB6-53622763B499"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_D53BB46F-3673-4870-BEF4-0BC130A5137F" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_693FA8F1-591F-4CA7-93CF-5F073312C26E">
+        <dmn:inputExpression id="_77036868-BE22-477D-8C3E-F83B5113883E" typeRef="string">
+          <dmn:text>Current Event.Category</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_40677C1F-3EDD-4E00-9188-D00208516085">
+        <dmn:inputExpression id="_0D317FA2-74BF-4168-9EB3-7724105ED2FF" typeRef="string">
+          <dmn:text>Current Event.Value</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_BD5BF416-FE85-4C1F-9DB2-9AB0D49F1562">
+        <dmn:inputExpression id="_77309681-4F14-4581-B6AA-988C6FF2478F" typeRef="string">
+          <dmn:text>Customer History.CurrentStatus</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_8FCFD4E3-20C6-4689-9B84-6ACA0A8AE2D8" name="ResponseType" typeRef="string"/>
+      <dmn:output id="_3B9873AC-FA89-4839-9270-1DEEA7F413BA" name="ResponseMessage" typeRef="string"/>
+      <dmn:annotation name="Rule Description"/>
+      <dmn:rule id="_B3984B8A-D277-4467-8457-891E7717EE29">
+        <dmn:inputEntry id="_AB7CCB59-3094-4E63-807A-57B349C94693">
+          <dmn:text>"CC_BALANCE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4C0A59D5-2AEC-49A9-89CC-C69995E5430B">
+          <dmn:text>"LATE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_64C8DB40-18F0-4DEA-A869-1C0822C6204C">
+          <dmn:text>"CUSTOMER_GOOD_STANDING"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_BF4BC71A-416E-437C-9A9E-29331864BA99">
+          <dmn:text>"ALERT"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_60344FA4-94F5-4967-899A-0C168A78C17D">
+          <dmn:text>"You have been a valued customer, and the late payment fee has been waived"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Late Payment Fees Waiver</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FFAE60D5-14E8-45D8-9268-39F6B4A59534">
+        <dmn:inputEntry id="_71338EE5-0265-407C-A9C7-384F5DB0F973">
+          <dmn:text>"CC_BALANCE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_22EEB442-9A9E-4FD8-A030-8ADCDD6CC44B">
+          <dmn:text>"LATE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_57218FA3-62F8-4D30-8167-3C3F4BDDE334">
+          <dmn:text>"OFFER_UPGRADE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_E9A50ACF-606A-4F95-8CD4-ECD98E00185B">
+          <dmn:text>"ALERT"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_7EEC7BC8-6C68-4719-9AA7-4FB36CC72144">
+          <dmn:text>"You have been a valued customer, and the late payment fee has been waived"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Late Payment Fees Waiver</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_D81DD782-CEA0-4B09-9833-FD49561D4BC0">
+        <dmn:inputEntry id="_AE606867-82DD-45DD-9F57-BAF3064AF578">
+          <dmn:text>"CC_TRANSACTION"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_06C03080-235B-4743-9E9A-0C7C936F0786">
+          <dmn:text>"AIRLINE_PURCHASE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_1FA98DAD-D1FF-454A-A26F-07A687F025D0">
+          <dmn:text>"OFFER_UPGRADE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_070CCB42-4FD3-4F6B-BC9C-D23427EE8A74">
+          <dmn:text>"OFFER"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_FFC2C2F6-316F-4818-A728-A9CAF49B7668">
+          <dmn:text>"Upgrade to Gold Premium Card today and enjoy airline benefits"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Upgrade for an airline Premium card</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_F692E572-96E6-45BF-A615-9DF840F6577B">
+        <dmn:inputEntry id="_B9AC0733-2567-4155-9B69-A44F609C0858">
+          <dmn:text>"CC_BALANCE_PAYMENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_8C9F0A6F-7A89-4D82-A7DF-1B5BF5B54F36">
+          <dmn:text>"MIN_DUE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A5ACBCDC-DD75-46F2-A58B-88CABDFD121E">
+          <dmn:text>"HIGH_BALANCE_DEBT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_11BD8BA4-9A0F-4E37-875D-2E18172FB9E6">
+          <dmn:text>"OFFER"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C36CBAC3-6088-4F54-838B-69DAB6576605">
+          <dmn:text>"Consider making use of our Balance Transfer option today"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Offer for Balance Transfer</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_C58431D9-9A69-4D96-98A9-1B5A23FF8CEA">
+        <dmn:inputEntry id="_A4301150-2DB4-48DC-8DBE-7BEA8C0EFA38">
+          <dmn:text>"DISPUTES"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_D3B371DF-16A4-4E00-A131-663520423319">
+          <dmn:text>"CASE_CREATED"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A2CDF4A6-D1F1-4CA9-B349-44E4CCC80B8D">
+          <dmn:text>"DISSATISFACTION_QUOTIENT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_DFB93B21-E771-4EDC-A7C0-1856A97E4197">
+          <dmn:text>"ALERT"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_D205FD87-49CF-4B4A-9CFE-16AF362ED6C3">
+          <dmn:text>"Expedite Resolution Process"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Speedy resolution for dissatisfied customer</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9AA22D4E-3F90-445D-83DE-757AFDFC10CE">
+        <dmn:inputEntry id="_FFC33E77-1626-45AB-9376-AB6306E320D1">
+          <dmn:text>"ONLINE_ACCOUNT"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_CB43BEC7-8783-4D90-9577-FC366F4B851F">
+          <dmn:text>"PAYMENT_FAILURE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_CA0871C6-386C-4488-9538-7544D258D19A">
+          <dmn:text>"DELINQUENCY_INDEX"
+</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_30ECC491-6634-4920-ABBB-F85EF4D949A7">
+          <dmn:text>"REMINDER"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C320C715-B600-47EA-93E3-735D107FAECF">
+          <dmn:text>"Late payment because of failed attempt, broadcast to all channels"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Avoid user delinquency before it happens</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_25BE4150-4C80-45C3-9F1A-08910E6D556B" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_552103EB-E273-480B-8800-25DD5E15459D">
+            <kie:width>50</kie:width>
+            <kie:width>239</kie:width>
+            <kie:width>192</kie:width>
+            <kie:width>155</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D53BB46F-3673-4870-BEF4-0BC130A5137F">
+            <kie:width>50</kie:width>
+            <kie:width>186</kie:width>
+            <kie:width>149</kie:width>
+            <kie:width>212.18861209964416</kie:width>
+            <kie:width>103</kie:width>
+            <kie:width>617</kie:width>
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_5A8D3E1C-5307-4C55-AFB6-53622763B499" dmnElementRef="_5A8D3E1C-5307-4C55-AFB6-53622763B499" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="386.29906542056074" y="320" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_8661D849-2BAB-4E73-80FA-C24872CE3150" dmnElementRef="_8661D849-2BAB-4E73-80FA-C24872CE3150" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="552" y="100" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_B20DCF5F-5310-4254-A879-D2393B4EB05A" dmnElementRef="_B20DCF5F-5310-4254-A879-D2393B4EB05A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="222" y="100" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_4C9F9686-FEC4-479D-9F04-3D8E69F6D17F-AUTO-TARGET" dmnElementRef="_4C9F9686-FEC4-479D-9F04-3D8E69F6D17F">
+        <di:waypoint x="436.29906542056074" y="345"/>
+        <di:waypoint x="602" y="150"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_15548D3F-1C57-4649-8A74-43D5A7167368-AUTO-TARGET" dmnElementRef="_15548D3F-1C57-4649-8A74-43D5A7167368">
+        <di:waypoint x="602" y="125"/>
+        <di:waypoint x="322" y="125"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_8076A38F-1848-4418-A1E2-449842C7AC9A" dmnElementRef="_8076A38F-1848-4418-A1E2-449842C7AC9A">
+        <di:waypoint x="436.29906542056074" y="345"/>
+        <di:waypoint x="272" y="125"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

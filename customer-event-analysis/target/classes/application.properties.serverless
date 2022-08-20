@@ -1,0 +1,10 @@
+quarkus.swagger-ui.always-include=true
+
+quarkus.container-image.group=bank-events
+# quarkus.kubernetes.deployment-target=knative
+quarkus.container-image.registry=image-registry.openshift-image-registry.svc:5000
+
+quarkus.openshift.build-strategy=docker
+quarkus.kubernetes-client.trust-certs=true
+quarkus.openshift.jvm-dockerfile=src/main/docker/Dockerfile.jvm
+quarkus.openshift.route.expose=true
